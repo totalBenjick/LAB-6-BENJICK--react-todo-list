@@ -8,7 +8,7 @@ class InputText extends Component{
     super(props);
     this.state = {
     term: '',
-    items: ["Tarea de prueba",]
+    items: []
     }
   }
 
@@ -21,12 +21,14 @@ class InputText extends Component{
     event.preventDefault();
     this.setState({
       term: '',
+      id: "",
       items: [...this.state.items, this.state.term]
     });
   }
   removeChild= (event)=>{
     event.preventDefault();
-    let taskIndex= event.target.parentNode.id;
+    console.log(event.target.parentNode.id);
+    let taskIndex = event.target.parentNode.id;
     let newState= this.state.items;
      newState.splice(taskIndex, 1);
     this.setState(newState);
@@ -48,7 +50,7 @@ class InputText extends Component{
         </form>
           <div>
                {tasks.map((task,i) =>{ 
-                return <div id={i} className="todo__list">
+                return <div  className="todo__list">
                   <div className="grid-container todo-item">
                       <div className="radioDiv">
                         <div className="proWid">
@@ -58,7 +60,7 @@ class InputText extends Component{
                           </label>
                         </div>
                       </div>
-                      <div className="fafaContainer">
+                      <div className="fafaContainer" id={i} >
                         <i id="remove" className="fa fa-remove fa-2x" onClick={this.removeChild }></i>
                       </div>
                   </div>
